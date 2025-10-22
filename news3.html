@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新闻详情</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        /* 导航栏样式 */
+        .header {
+            background: linear-gradient(to bottom, #6BA4D0 0%, #4A8DC7 100%);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-top {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-input {
+            padding: 8px 15px;
+            border: none;
+            width: 400px;
+            font-size: 14px;
+            outline: none;
+            border-radius: 2px;
+        }
+
+        .search-btn {
+            padding: 8px 25px;
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+
+        .search-btn:hover {
+            background-color: #f5f5f5;
+        }
+
+        .user-links {
+            display: flex;
+            gap: 15px;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .user-links a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .user-links a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-bar {
+            background-color: #2B7AB8;
+        }
+
+        .nav-menu {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            list-style: none;
+            justify-content: flex-start;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 12px 25px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .nav-menu .hot-tag {
+            position: absolute;
+            top: 2px;
+            right: 5px;
+            background-color: #ff0000;
+            color: #fff;
+            font-size: 10px;
+            padding: 2px 4px;
+            border-radius: 2px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background-color: #fff;
+            padding: 40px 60px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-header {
+            text-align: center;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e5e5e5;
+            margin-bottom: 30px;
+        }
+
+        .article-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .article-meta {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        .article-meta span {
+            margin: 0 10px;
+        }
+
+        .article-content {
+            font-size: 16px;
+            color: #555;
+            line-height: 2;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+        }
+
+        /* 诗歌样式 */
+        .poem-section {
+            background-color: #f9f9f9;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #0000CD;
+            border-radius: 4px;
+        }
+
+        .poem-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #222;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .poem-author {
+            font-size: 14px;
+            color: #999;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .poem-content {
+            font-size: 16px;
+            line-height: 2.2;
+            color: #444;
+            white-space: pre-line;
+            font-family: "KaiTi", "STKaiti", serif;
+        }
+
+        .poem-stanza {
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 30px;
+            }
+
+            .article-title {
+                font-size: 24px;
+            }
+
+            .article-content {
+                font-size: 15px;
+            }
+
+            .poem-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="header">
+        <div class="header-top">
+            <div class="logo">
+                <img src="文字和图片素材/image copy.png" alt="中国民航网">
+            </div>
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="">
+                <button class="search-btn">搜索</button>
+                <div class="user-links">
+                    <a href="#">登录</a>
+                    <span>|</span>
+                    <a href="#">注册</a>
+                </div>
+            </div>
+        </div>
+        <nav class="nav-bar">
+            <ul class="nav-menu">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">新闻</a></li>
+                <li><a href="#">频道</a></li>
+                <li><a href="#">专题专栏</a></li>
+                <li>
+                    <a href="#">通航频道</a>
+                    <span class="hot-tag">HOT</span>
+                </li>
+                <li>
+                    <a href="#">民航推送</a>
+                    <span class="hot-tag">HOT</span>
+                </li>
+                <li><a href="#">网络电视</a></li>
+                <li><a href="#">报刊图书</a></li>
+                <li><a href="#">服务</a></li>
+                <li><a href="#">广告</a></li>
+                <li><a href="#">关于我们</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- 文章头部 -->
+        <div class="article-header">
+            <h1 class="article-title">致耳机——一位管制员的深情告白</h1>
+            <div class="article-meta">
+                <span>发布时间：2025年10月22日</span>
+                <span>|</span>
+                <span>来源：本站</span>
+                <span>|</span>
+                <span>通讯员：曹智</span>
+            </div>
+        </div>
+
+        <!-- 文章内容 -->
+        <div class="article-content">
+            <p>在航空管制的世界里，耳机是管制员最亲密的伙伴。它不仅是一件工作设备，更是连接天空与大地、传递生命与安全的纽带。近日，一位管制员创作的诗歌《致耳机》在民航系统内引发共鸣，用细腻的笔触描绘了管制员与耳机之间的特殊情感。</p>
+
+            <!-- 诗歌部分 -->
+            <div class="poem-section">
+                <h2 class="poem-title">致耳机</h2>
+                <p class="poem-author">作者：曹智</p>
+                
+                <div class="poem-content">
+                    <div class="poem-stanza">你是我耳蜗的延伸，是钉在颅骨内的钢缆。
+日复一日，将整个天空的喧嚣
+拧成电流的瀑布，灌入我的颅内。
+高频嘶鸣、白噪的沙暴、数百个陌生呼号
+在电离层相互碰撞。你是我与星海
+最危险的私密连线，是深潜者
+在混沌波段中打捞信号的金属渔网。</div>
+
+                    <div class="poem-stanza">雷雨夜，你递来一句疲惫的"收到"
+除夕时，转交陌生的"新年快乐"
+你让我听见颠簸声线里藏着的颤抖
+被迫吞噬所有噪音，也被迫承载
+所有生命。</div>
+
+                    <div class="poem-stanza">记得那场大雾吗？跑道在乳白中溶解
+世界坍缩成驾驶舱荧光与耳机电流
+汗水从掌心蔓延到太阳穴
+金属外壳与皮肤黏合成共生体
+当全频道静默，你突然放大
+某个频率的呼吸声，像在说：
+"相信自己"
+直到那句"可以落地"击碎迷雾
+此刻你传递的并非字节，而是
+将整个世界的重量压上我的声带。</div>
+
+                    <div class="poem-stanza">荣光属于天空，但我的无名勋章
+一半刻在你振膜的震颤里
+一半烙在你听筒的寂静中。</div>
+
+                    <div class="poem-stanza">老伙计，我的金属耳蜗，我的唇舌
+我孤独时唯一的共谋。</div>
+                </div>
+            </div>
+
+            <p>这首诗歌以第二人称的方式，将耳机拟人化，生动展现了管制员日常工作中的紧张与压力。从"高频嘶鸣、白噪的沙暴"到"数百个陌生呼号"，诗歌细腻地描绘了管制员耳机中的声音世界。</p>
+
+            <p>特别是诗中描写的大雾天气场景，"跑道在乳白中溶解，世界坍缩成驾驶舱荧光与耳机电流"，让人感受到管制员在极端天气条件下的巨大压力。而那句"可以落地"不仅是对飞行员的指令，更承载着整个世界的重量。</p>
+
+            <p>作为航空安全的守护者，管制员们日复一日地戴着耳机，倾听来自天空的每一个声音，传递每一条关键指令。这首诗歌不仅是对耳机这一工作伙伴的致敬，更是对所有默默坚守岗位的管制员的礼赞。</p>
+
+            <p>正如诗中所言："荣光属于天空，但我的无名勋章，一半刻在你振膜的震颤里，一半烙在你听筒的寂静中。"这份坚守与责任，值得我们每一个人铭记和尊重。</p>
+        </div>
+    </div>
+</body>
+</html>
